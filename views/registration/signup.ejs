@@ -1,0 +1,84 @@
+<form action="#" class="form" id="signUpForm">
+  <div class="heading">
+    <h1 class="heading__main">Create an account</h1>
+  </div>
+  <div class="form__row">
+    <label for="fname" class="form__label">First Name</label>
+    <input
+      name="fname"
+      id="fname"
+      type="text"
+      class="form__input"
+      placeholder="Your First name"
+      required
+    />
+  </div>
+  <div class="form__row">
+    <label for="lname" class="form__label">Last Name</label>
+    <input
+      name="lname"
+      type="text"
+      id="lname"
+      class="form__input"
+      placeholder="Your Last name"
+      required
+    />
+  </div>
+  <div class="form__row">
+    <label for="uname" class="form__label">User Name</label>
+    <input
+      name="uname"
+      type="text"
+      class="form__input"
+      placeholder="Your name"
+      id="username"
+      required
+    />
+  </div>
+  <div class="form__row">
+    <label for="email" class="form__label">Email Address</label>
+    <input
+      name="email"
+      id="email"
+      type="email"
+      class="form__input"
+      placeholder="you@gmail.com"
+      required
+    />
+  </div>
+  <div class="form__row">
+    <label for="password" class="form__label">Password</label>
+    <input
+      name="password"
+      id="password"
+      type="password"
+      class="form__input"
+      placeholder="Your Password"
+      required
+    />
+  </div>
+  <div class="form__row">
+    <label for="confirmPassword" class="form__label">Confirm Password</label>
+    <input
+      name="confirmPassword"
+      type="password"
+      class="form__input"
+      id="passwordConfirm"
+      placeholder="Your Password"
+      required
+    />
+  </div>
+  <div class="form__row">
+    <label for="confirmPassword" class="form__label">Select Category</label>
+    <select class="form__input" id="role">
+      <option value="writer">Writer</option>
+      <option value="publisher">Publisher</option>
+    </select>
+  </div>
+  <div class="form__row">
+    <input type="submit" class="form__btn--submit" value="SignUp" />
+  </div>
+  <div class="form__row">
+    <a href="./forgetPassword.html" class="form__link--forgetpswd">Forgot password?</a>
+  </div>
+</form>

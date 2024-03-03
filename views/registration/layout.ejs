@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src * self blob: data: gap:; style-src * self 'unsafe-inline' blob: data: gap:; script-src * 'self' 'unsafe-eval' 'unsafe-inline' blob: data: gap:; object-src * 'self' blob: data: gap:; img-src * self 'unsafe-inline' blob: data: gap:; connect-src self * 'unsafe-inline' blob: data: gap:; frame-src * self blob: data: gap:;"
+    />
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;0,900;1,300;1,700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.1/axios.min.js"
+      integrity="sha512-LeNot3qbERo/DuYk+77g0F/MlrioZfnSprEM02GKMQSOia7P2UGS8w/ijJ45HaLsy5vhk4HDEtmLkZQyC+Z0Hg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script> -->
+    <link rel="stylesheet" href="./css/style.css" />
+
+    <title><%= title %></title>
+  </head>
+
+  <body>
+    <div class="container">
+      <div class="header" style="padding: 2rem 2rem;">
+        <div class="header__link">
+          <a href="/" class="header__link--text">All Books</a>
+        </div>
+        <div class="header__logo">
+          <img src="#" alt="logo" class="header__logo--img" />
+        </div>
+        <div class="btn">
+          <a href="./login" class="btn__signin" style="background-color: #1171b1;">SignIn</a>
+          <a href="./signup" class="btn__signup" style="background-color: #1171b1;">SignUp</a>
+        </div>
+      </div>
+      <%- body %>
+    </div>
+    <!-- <script src="./js/login.js"></script> -->
+
+    <script src="./js/bundle.js"></script>
+  </body>
+</html>

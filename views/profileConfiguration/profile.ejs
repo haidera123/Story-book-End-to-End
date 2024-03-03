@@ -1,0 +1,121 @@
+<div class="userProfile">
+  <div class="userProfile__navigation">
+    <input type="hidden" id="userId" value="<%= user._id %>" />
+    <ul class="userProfile__navigation--list">
+      <li class="userProfile__navigation--item userProfile__navigation--selectedItem">
+        <a href="#" class="userProfile__navigation--link"
+          ><i class="fa fa-cog icon" aria-hidden="true"></i> Account Settings</a
+        >
+      </li>
+    </ul>
+  </div>
+  <div class="userProfile__content">
+    <form class="userProfile__content--secondaryCredentials" id="updateuser__form">
+      <div class="heading">
+        <h2 class="heading__secondary">
+          <i class="fa fa-cog icon" aria-hidden="true"></i> Account Settings
+        </h2>
+      </div>
+      <div class="form__row">
+        <div class="avatar-upload">
+          <div class="avatar-edit">
+            <input type="file" id="img" name="img" accept=".png, .jpg, .jpeg" />
+            <label for="img"></label>
+          </div>
+          <div class="avatar-preview">
+            <div id="imagePreview" style="background-image: url(/img/users/<%= user.img %>)"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="form__row">
+        <label for="fname" class="form__label">First Name</label>
+        <input
+          name="fname"
+          id="fname"
+          type="text"
+          class="form__input"
+          value="<%=user.fname %>"
+          required
+        />
+      </div>
+      <div class="form__row">
+        <label for="lname" class="form__label">Last Name</label>
+        <input
+          name="lname"
+          id="lname"
+          type="text"
+          class="form__input"
+          value="<%=user.lname %>"
+          required
+        />
+      </div>
+      <div class="form__row">
+        <label for="email" class="form__label">Email Address</label>
+        <input
+          name="email"
+          id="email"
+          type="email"
+          class="form__input"
+          value="<%=user.email %>"
+          required
+        />
+      </div>
+      <div class="form__row">
+        <label for="fname" class="form__label">Desription</label>
+        <textarea
+          name="about"
+          id="about"
+          type="text"
+          class="form__textarea"
+          placeholder="Write about your self"
+          required
+        >
+<%= user.about.trim() %></textarea
+        >
+      </div>
+      <div class="form__row">
+        <input
+          type="submit"
+          class="form__btn--submit"
+          id="updateuser__form"
+          value="Save Settings"
+        />
+      </div>
+    </form>
+    <!-- Change Password -->
+    <form class="userProfile__content--primaryCredentials" id="changePasswordForm">
+      <div class="heading">
+        <h2 class="heading__secondary">Change Password</h2>
+      </div>
+      <div class="form__row">
+        <label for="currentPswd" class="form__label">Current Password</label>
+        <input
+          name="passwordCurrent"
+          id="passwordCurrent"
+          type="password"
+          class="form__input"
+          required
+        />
+      </div>
+      <div class="form__row">
+        <label for="newPswd" class="form__label">New Password</label>
+        <input name="password" id="password" type="password" class="form__input" required />
+      </div>
+      <div class="form__row">
+        <label for="confirmPswd" class="form__label">Confirm Password</label>
+        <input
+          name="passwordConfirm"
+          id="passwordConfirm"
+          type="password"
+          class="form__input"
+          required
+        />
+      </div>
+
+      <div class="form__row">
+        <input type="submit" class="form__btn--submit" value="Change Password" />
+      </div>
+    </form>
+  </div>
+</div>

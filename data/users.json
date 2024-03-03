@@ -1,0 +1,18 @@
+[
+    {
+        "fname":"Haider",
+        "lname":"Ali",
+        "uname":"Haider Ali",
+        "email":"Email Address",
+        "password":"@12#2@$!412#",
+        "passwordConfirm":"@12#2@$!412#",
+        "about":"loream loream loream loream loream",
+        "img":"c:/program files/photos/data/img.jpeg",
+        "books":["Book ID1","Book ID2"],
+        "type":"writter | reader",
+        "noOfFollowers":0,
+        "noOfFollowings":0,
+        "followers":["followersId"],
+        "followings":["followingsId"]
+    }
+]

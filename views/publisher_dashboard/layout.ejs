@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./../../css/style.css" />
+    <link
+    rel="stylesheet"
+    href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css"
+  />
+
+  <link rel="stylesheet" href="/css/tool_style.css" />
+
+
+    <title>Dashboard</title>
+  </head>
+  <body>
+    <%- body %>
+    <script src="https://cdn.ckeditor.com/ckeditor5/10.0.1/decoupled-document/ckeditor.js"></script>
+    <script
+      src="https://code.jquery.com/jquery-3.6.0.min.js"
+      integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+      crossorigin="anonymous"
+    ></script>
+    <script src="/js/writing_script.js"></script>
+    <script src="/js/writingUI_1.js"></script>
+    <script src="/js/bundle.js"></script>
+    <script src="/js/saveBookScript.js"></script>
+    
+    <script>
+      // Select all the navigation for single page navigation
+      const sectionBooks = document.getElementById("sectionBooks");
+      const sectionPublishedBooks = document.getElementById("sectionPublishedBooks");
+      const sectionCommunication = document.getElementById("sectionCommunication");
+      const sectionNotification = document.getElementById("sectionNotification");
+
+      // Navigate to section book
+
+      function navigateSectionBooks(ele) {
+        display("block", "none", "none", "none");
+        let preSelected = document.querySelector(".selectedDashboardNavigation");
+        if (preSelected) {
+          preSelected.classList.remove("selectedDashboardNavigation");
+        }
+        ele.classList.add("selectedDashboardNavigation");
+      }
+      // Navigate to publish book
+      function navigatePublishedBooks(ele) {
+        display("none", "block", "none", "none");
+        let preSelected = document.querySelector(".selectedDashboardNavigation");
+        if (preSelected) {
+          preSelected.classList.remove("selectedDashboardNavigation");
+        }
+        ele.classList.add("selectedDashboardNavigation");
+      }
+      // Navigate to section communication
+      function navigateSectionCommunication(ele) {
+        display("none", "none", "block", "none");
+        let preSelected = document.querySelector(".selectedDashboardNavigation");
+        if (preSelected) {
+          preSelected.classList.remove("selectedDashboardNavigation");
+        }
+        ele.classList.add("selectedDashboardNavigation");
+      }
+      // Navigate to section notification
+      function navigateSectionNotification(ele) {
+        display("none", "none", "none", "block");
+        let preSelected = document.querySelector(".selectedDashboardNavigation");
+        if (preSelected) {
+          preSelected.classList.remove("selectedDashboardNavigation");
+        }
+        ele.classList.add("selectedDashboardNavigation");
+      }
+      // Function use to hide unselected navigation and display selected navigation
+      function display(el1, el2, el3, el4) {
+        sectionBooks.style.display = el1;
+        sectionPublishedBooks.style.display = el2;
+        sectionCommunication.style.display = el3;
+        sectionNotification.style.display = el4;
+      }
+    </script>
+  </body>
+</html>

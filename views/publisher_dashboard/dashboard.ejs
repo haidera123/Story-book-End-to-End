@@ -1,0 +1,219 @@
+<div class="container__dashboard">
+  <nav class="dashboard__navigation">
+    <ul class="dashboard__navigation--list">
+      <li class="navigation--list--itemRef"><a href="#">Switch to reader view</a></li>
+      <li class="navigation--list--itemRef">
+        <a href="#"><img src="/img/users/<%= user.img %>" alt="profile" /></a>
+      </li>
+      <li class="navigation--list--itemRef"><a href="#"><%= user.uname %></a></li>
+      <li
+        class="navigation--list--item selectedDashboardNavigation"
+        onclick="navigateSectionBooks(this)"
+      >
+        Books in review
+      </li>
+      <li class="navigation--list--item" onclick="navigatePublishedBooks(this)">Published Books</li>
+      <li class="navigation--list--item" onclick="navigateSectionCommunication(this)">
+        Communication
+      </li>
+      <li class="navigation--list--item" onclick="navigateSectionNotification(this)">
+        Notifications
+      </li>
+      <li class="navigation--list--item"><a href="#">Logout</a></li>
+    </ul>
+  </nav>
+
+  <section class="content__section" id="contentSection">
+    <div class="content__section--books" id="sectionBooks">
+      <h1 class="heading__primary">Books</h1>
+
+      <div class="books__container">
+        <ul class="books__container--list">
+          <!-- Book 1 -->
+        <% books.forEach((bk,ind)=>{ %>
+          <% if(bk.publishStatus == "pending") { %>
+
+          <li class="books__list--item">
+            <div class="book__item">
+              <div class="book__item--img">
+                <img src="./../../img/Facebook-Cover-Photo-Size.png" alt="coverimg" />
+              </div>
+
+              <div class="book__item--info">
+                <div class="book__info--description">
+                  <span><b>Book:</b></span>
+                  <span><%= bk.name %></span>
+                </div>
+                <div class="book__info--author">
+                  <span><b>Author:</b></span> 
+                  <span><a href="#"><%= authors[ind].uname %></a> </span>
+                </div>
+                <div class="book__info--cta">
+                  <button class="card__cta--btn" id="publishBookBtn" data-book-id="<%= bk._id %>">Publish</button>
+                  <a href="/readingroomPublisher/<%=bk._id %>" class="card__cta--btn">Read</a>
+                </div>
+              </div>
+            </div>
+          </li>
+          <% } %>
+          <% }) %>
+        </ul>
+      </div>
+    </div>
+    <div class="content__section--published" id="sectionPublishedBooks">
+      <h1 class="heading__primary">Published Books</h1>
+
+      <div class="books__container">
+        <ul class="books__container--list">
+          <!-- Book 1 -->
+          <% books.forEach((bk,ind)=>{ %>
+            <% if(bk.publishStatus == "published") { %>
+
+          <li class="books__list--item">
+            <div class="book__item">
+              <div class="book__item--img">
+                <img src="./../../img/Facebook-Cover-Photo-Size.png" alt="coverimg" />
+              </div>
+
+              <div class="book__item--info">
+                <div class="book__info--description">
+                  <span><b>Book:</b></span>
+                  <span><%= bk.name %></span>
+                </div>
+                <div class="book__info--author">
+                  <span><b>Author:</b></span>
+                  <span><a href="127.0.0.1:3000/user/<%= authors[ind]._id %>"><%= authors[ind].uname %></a> </span>
+                </div>
+                <div class="book__info--cta">
+                  <button class="card__cta--btn">View</button>
+                </div>
+              </div>
+            </div>
+          </li>
+          
+          <% } %>
+          <% }) %>
+        </ul>
+      </div>
+    </div>
+    <div class="content__section--communication" id="sectionCommunication">
+      <h1 class="heading__primary">Communication</h1>
+      <div class="container__message">
+        <div class="conversation__list">
+          <div class="conversation__list--header">
+            <h1 class="heading__primary">All Conversation</h1>
+          </div>
+          <ul class="conversation__list--ul">
+            <li class="conversation__list--li">
+              <div class="conversation__list--box">
+                <div class="conversation__list--profile">
+                  <img src="./../../img/profile pic placeholder.png" alt="profile Pic" />
+                </div>
+                <div class="conversation__list--detail">
+                  <span class="conversation__list--uname"> UserName </span>
+                  <span class="conversation__list--lmsg"> Last Message... </span>
+                </div>
+              </div>
+            </li>
+            <!-- Second Li -->
+            <li class="conversation__list--li">
+              <div class="conversation__list--box">
+                <div class="conversation__list--profile">
+                  <img src="./../../img/profile pic placeholder.png" alt="profile Pic" />
+                </div>
+                <div class="conversation__list--detail">
+                  <span class="conversation__list--uname"> UserName </span>
+                  <span class="conversation__list--lmsg"> Last Message... </span>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <div class="message__list">
+          <div class="message__list--header">
+            <h1 class="heading__primary">UserName</h1>
+          </div>
+          <ul class="message__list--ul">
+            <li class="message__list--li">
+              <div class="message__list--box">
+                <div class="message__list--profile">
+                  <img src="./../../img/profile pic placeholder.png" alt="profile Pic" />
+                </div>
+                <div class="message__list--details">
+                  <div class="message__list--timeuname">
+                    <span class="message__list--uname"> UserName </span>
+                    <span class="message__list--time"> Feb 07, 1:13 PM </span>
+                  </div>
+                  <div class="message__list--msg">
+                    <p>Hi there! I am Ali.</p>
+                  </div>
+                </div>
+              </div>
+            </li>
+            <!-- Second Message -->
+            <li class="message__list--li">
+              <div class="message__list--box">
+                <div class="message__list--profile">
+                  <img src="./../../img/profile pic placeholder.png" alt="profile Pic" />
+                </div>
+                <div class="message__list--details">
+                  <div class="message__list--timeuname">
+                    <span class="message__list--uname"> UserName </span>
+                    <span class="message__list--time"> Feb 07, 1:13 PM </span>
+                  </div>
+                  <div class="message__list--msg">
+                    <p>Hi there! I am Ali.</p>
+                  </div>
+                </div>
+              </div>
+            </li>
+          </ul>
+          <div class="msg__textbox">
+            <form action="#">
+              <div class="form__row">
+                <input type="text" class="form__input" />
+              </div>
+              <div class="form__row btn__send" style="background-color: transparent; width: 100%">
+                <div class="selectors__eav">
+                  <i
+                    class="fa fa-smile-o"
+                    style="
+                      color: #27ae60;
+                      font-size: 22px;
+                      display: inline-block;
+                      margin-right: 6px;
+                      cursor: pointer;
+                    "
+                    aria-hidden="true"
+                  ></i>
+                  <i
+                    class="fa fa-paperclip"
+                    style="
+                      color: #000;
+                      font-size: 22px;
+                      display: inline-block;
+                      margin-right: 6px;
+                      cursor: pointer;
+                    "
+                    aria-hidden="true"
+                    aria-hidden="true"
+                  ></i>
+
+                  <div class="videocall__btn">
+                    <i class="fa fa-video-camera" aria-hidden="true"></i>
+                    <span>Video Call</span>
+                  </div>
+                </div>
+
+                <input type="submit" class="btn__send--btn" value="send" />
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="content__section--notification" id="sectionNotification">
+      <h1>Notifications</h1>
+    </div>
+  </section>
+</div>

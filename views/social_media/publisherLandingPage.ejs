@@ -1,0 +1,269 @@
+<!-- Publisher Landing Section-->
+<div class="publisher__landing">
+  <div class="publisher__landing--main">
+    <div class="publand__cover" style="background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(/img/users/<%= publisherData.img %>);">
+      <div class="publand__cover--identity">
+        <div class="publand__cover--profileImg">
+          <div class="avatar-upload">
+            <div class="avatar-preview">
+              <div style="background-image: url(/img/users/<%= userData.img %>)"></div>
+            </div>
+          </div>
+          <span class="primary__info--username" style="color: #fff">
+            <%= publisherData.name %>
+          </span>
+        </div>
+        <div class="publand__cover--identityBtn">
+          <a href="./../writing workspace/message.html" class="btnPublish">Message</a>
+          <a href="#" class="btnPublish">Follow+</a>
+          <a href="#" class="btnPublish">Books Published<span>(4)</span></a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="publisher__landing--secondary">
+    <div class="publand__secondary--about">
+      <h2 class="heading__secondary">About</h2>
+      <p><%= userData.about %></p>
+    </div>
+    <div class="publand__secondary--bookspublished">
+      <h2 class="heading__secondary">Book Published</h2>
+      <ul class="booklist" style="display: none">
+        <!-- book 1 -->
+        <li class="booklist__item">
+          <div class="searchBox__coverimg">
+            <img src="/img/users/<%= publisherData.img %>" alt="" />
+          </div>
+          <div class="searchBox__name">
+            <h2>Philp and Alexander: King and conquerore</h2>
+            <div class="searchBox__name--author">
+              <span>Author: <a href="#">Adrian Goldsworthy</a></span>
+            </div>
+            <div class="searchBox__name--publisher">
+              <span>Publisher: <a href="#">Howa</a></span>
+            </div>
+            <div class="searchBox__name--publicationDate">
+              <span>Publication date: Oct 27, 2020</span>
+            </div>
+            <div class="searchBox__name--rating">
+              <i class="fa fa-star ratingChecked" aria-hidden="true"></i>
+              <i class="fa fa-star ratingChecked" aria-hidden="true"></i>
+              <i class="fa fa-star ratingChecked" aria-hidden="true"></i>
+              <i class="fa fa-star ratingChecked" aria-hidden="true"></i>
+              <i class="fa fa-star ratingChecked" aria-hidden="true"></i>
+              <span>(32)</span>
+            </div>
+          </div>
+        </li>
+        <!-- book 2 -->
+        <li class="booklist__item">
+          <div class="searchBox__coverimg">
+            <img src="./../../img/Facebook-Cover-Photo-Size.png" alt="" />
+          </div>
+          <div class="searchBox__name">
+            <h2>Philp and Alexander: King and conquerore</h2>
+            <div class="searchBox__name--author">
+              <span>Author: <a href="#">Timothy Ferriss</a></span>
+            </div>
+            <div class="searchBox__name--publisher">
+              <span>Publisher: <a href="#">Howa</a></span>
+            </div>
+            <div class="searchBox__name--publicationDate">
+              <span>Publication date: Oct 27, 2020</span>
+            </div>
+            <div class="searchBox__name--rating">
+              <i class="fa fa-star ratingChecked" aria-hidden="true"></i>
+              <i class="fa fa-star ratingChecked" aria-hidden="true"></i>
+              <i class="fa fa-star ratingChecked" aria-hidden="true"></i>
+              <i class="fa fa-star ratingChecked" aria-hidden="true"></i>
+              <i class="fa fa-star" aria-hidden="true"></i>
+              <span>(32)</span>
+            </div>
+          </div>
+        </li>
+        <!-- book 2 -->
+        <li class="booklist__item">
+          <div class="searchBox__coverimg">
+            <img src="./../../img/Facebook-Cover-Photo-Size.png" alt="" />
+          </div>
+          <div class="searchBox__name">
+            <h2>The 4-Hour Work Week</h2>
+            <div class="searchBox__name--author">
+              <span>Author: <a href="#">Timothy Ferriss</a></span>
+            </div>
+            <div class="searchBox__name--publisher">
+              <span>Publisher: <a href="#">Howa</a></span>
+            </div>
+            <div class="searchBox__name--publicationDate">
+              <span>Publication date: Oct 27, 2020</span>
+            </div>
+            <div class="searchBox__name--rating">
+              <i class="fa fa-star ratingChecked" aria-hidden="true"></i>
+              <i class="fa fa-star ratingChecked" aria-hidden="true"></i>
+              <i class="fa fa-star ratingChecked" aria-hidden="true"></i>
+              <i class="fa fa-star ratingChecked" aria-hidden="true"></i>
+              <i class="fa fa-star" aria-hidden="true"></i>
+              <span>(32)</span>
+            </div>
+          </div>
+        </li>
+        <!-- book 2 -->
+        <li class="booklist__item">
+          <div class="searchBox__coverimg">
+            <img src="./../../img/Facebook-Cover-Photo-Size.png" alt="" />
+          </div>
+          <div class="searchBox__name">
+            <h2>The 4-Hour Work Week</h2>
+            <div class="searchBox__name--author">
+              <span>Author: <a href="#">Timothy Ferriss</a></span>
+            </div>
+            <div class="searchBox__name--publisher">
+              <span>Publisher: <a href="#">Howa</a></span>
+            </div>
+            <div class="searchBox__name--publicationDate">
+              <span>Publication date: Oct 27, 2020</span>
+            </div>
+            <div class="searchBox__name--rating">
+              <i class="fa fa-star ratingChecked" aria-hidden="true"></i>
+              <i class="fa fa-star ratingChecked" aria-hidden="true"></i>
+              <i class="fa fa-star ratingChecked" aria-hidden="true"></i>
+              <i class="fa fa-star ratingChecked" aria-hidden="true"></i>
+              <i class="fa fa-star" aria-hidden="true"></i>
+              <span>(32)</span>
+            </div>
+          </div>
+        </li>
+        <!-- book 2 -->
+        <li class="booklist__item">
+          <div class="searchBox__coverimg">
+            <img src="./../../img/Facebook-Cover-Photo-Size.png" alt="" />
+          </div>
+          <div class="searchBox__name">
+            <h2>The 4-Hour Work Week</h2>
+            <div class="searchBox__name--author">
+              <span>Author: <a href="#">Timothy Ferriss</a></span>
+            </div>
+            <div class="searchBox__name--publisher">
+              <span>Publisher: <a href="#">Howa</a></span>
+            </div>
+            <div class="searchBox__name--publicationDate">
+              <span>Publication date: Oct 27, 2020</span>
+            </div>
+            <div class="searchBox__name--rating">
+              <i class="fa fa-star ratingChecked" aria-hidden="true"></i>
+              <i class="fa fa-star ratingChecked" aria-hidden="true"></i>
+              <i class="fa fa-star ratingChecked" aria-hidden="true"></i>
+              <i class="fa fa-star ratingChecked" aria-hidden="true"></i>
+              <i class="fa fa-star" aria-hidden="true"></i>
+              <span>(32)</span>
+            </div>
+          </div>
+        </li>
+        <!-- book 2 -->
+        <li class="booklist__item">
+          <div class="searchBox__coverimg">
+            <img src="./../../img/Facebook-Cover-Photo-Size.png" alt="" />
+          </div>
+          <div class="searchBox__name">
+            <h2>The 4-Hour Work Week</h2>
+            <div class="searchBox__name--author">
+              <span>Author: <a href="#">Timothy Ferriss</a></span>
+            </div>
+            <div class="searchBox__name--publisher">
+              <span>Publisher: <a href="#">Howa</a></span>
+            </div>
+            <div class="searchBox__name--publicationDate">
+              <span>Publication date: Oct 27, 2020</span>
+            </div>
+            <div class="searchBox__name--rating">
+              <i class="fa fa-star ratingChecked" aria-hidden="true"></i>
+              <i class="fa fa-star ratingChecked" aria-hidden="true"></i>
+              <i class="fa fa-star ratingChecked" aria-hidden="true"></i>
+              <i class="fa fa-star ratingChecked" aria-hidden="true"></i>
+              <i class="fa fa-star" aria-hidden="true"></i>
+              <span>(32)</span>
+            </div>
+          </div>
+        </li>
+        <!-- book 2 -->
+        <li class="booklist__item">
+          <div class="searchBox__coverimg">
+            <img src="./../../img/Facebook-Cover-Photo-Size.png" alt="" />
+          </div>
+          <div class="searchBox__name">
+            <h2>The 4-Hour Work Week</h2>
+            <div class="searchBox__name--author">
+              <span>Author: <a href="#">Timothy Ferriss</a></span>
+            </div>
+            <div class="searchBox__name--publisher">
+              <span>Publisher: <a href="#">Howa</a></span>
+            </div>
+            <div class="searchBox__name--publicationDate">
+              <span>Publication date: Oct 27, 2020</span>
+            </div>
+            <div class="searchBox__name--rating">
+              <i class="fa fa-star ratingChecked" aria-hidden="true"></i>
+              <i class="fa fa-star ratingChecked" aria-hidden="true"></i>
+              <i class="fa fa-star" aria-hidden="true"></i>
+              <i class="fa fa-star" aria-hidden="true"></i>
+              <i class="fa fa-star" aria-hidden="true"></i>
+              <span>(32)</span>
+            </div>
+          </div>
+        </li>
+        <!-- book 2 -->
+        <li class="booklist__item">
+          <div class="searchBox__coverimg">
+            <img src="./../../img/Facebook-Cover-Photo-Size.png" alt="" />
+          </div>
+          <div class="searchBox__name">
+            <h2>The 4-Hour Work Week</h2>
+            <div class="searchBox__name--author">
+              <span>Author: <a href="#">Timothy Ferriss</a></span>
+            </div>
+            <div class="searchBox__name--publisher">
+              <span>Publisher: <a href="#">Howa</a></span>
+            </div>
+            <div class="searchBox__name--publicationDate">
+              <span>Publication date: Oct 27, 2020</span>
+            </div>
+            <div class="searchBox__name--rating">
+              <i class="fa fa-star ratingChecked" aria-hidden="true"></i>
+              <i class="fa fa-star ratingChecked" aria-hidden="true"></i>
+              <i class="fa fa-star ratingChecked" aria-hidden="true"></i>
+              <i class="fa fa-star" aria-hidden="true"></i>
+              <i class="fa fa-star" aria-hidden="true"></i>
+              <span>(32)</span>
+            </div>
+          </div>
+        </li>
+        <!-- book 2 -->
+        <li class="booklist__item">
+          <div class="searchBox__coverimg">
+            <img src="./../../img/Facebook-Cover-Photo-Size.png" alt="" />
+          </div>
+          <div class="searchBox__name">
+            <h2>The 4-Hour Work Week</h2>
+            <div class="searchBox__name--author">
+              <span>Author: <a href="#">Timothy Ferriss</a></span>
+            </div>
+            <div class="searchBox__name--publisher">
+              <span>Publisher: <a href="#">Howa</a></span>
+            </div>
+            <div class="searchBox__name--publicationDate">
+              <span>Publication date: Oct 27, 2020</span>
+            </div>
+            <div class="searchBox__name--rating">
+              <i class="fa fa-star ratingChecked" aria-hidden="true"></i>
+              <i class="fa fa-star ratingChecked" aria-hidden="true"></i>
+              <i class="fa fa-star ratingChecked" aria-hidden="true"></i>
+              <i class="fa fa-star" aria-hidden="true"></i>
+              <i class="fa fa-star" aria-hidden="true"></i>
+              <span>(32)</span>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,75 @@
+<!-- User Profile Section -->
+<section class="user__profile">
+  <!-- User Profile Primary Info -->
+  <div class="user__profile--primary">
+    <div class="primary__info">
+      <!-- User Profile Image -->
+      <div class="primary__info--userimg">
+        <img src="/img/users/<%= userData.img %>" alt="User Image" />
+      </div>
+      <!-- User Profile Name -->
+      <div class="primary__info--username"><%= userData.uname %></div>
+      <!-- User profile Follow buttob -->
+      <div class="primary__info--followbtn">
+        <form action="#">
+          <input
+            type="submit"
+            value="<%= userData.connections.find(c=> c == user._id.toString())?'Connected':'Connect+' %>"
+            id="connectButton"
+            data-user-id="<%=userData._id %>"
+          />
+        
+        </form>
+      </div>
+      <!-- User Profile Follower info -->
+      <div class="primary__info--followinfo">
+        <span><a href="#">Connections</a> <b>(<%= userData.connections.length %>)</b></span>
+      </div>
+    </div>
+  </div>
+  <!-- User profile secondary info -->
+  <div class="user__profile--secondary">
+    <div class="secondary__info">
+      <div class="secondary__info--about">
+        <h2 class="heading__primary">About</h2>
+        <p style="text-align: justify"><%= userData.about %></p>
+      </div>
+      <div class="secondary__info--books">
+        <h2 class="heading__primary">Books</h2>
+        <ul class="booklist" >
+          <!-- book 1 -->
+          <% userData.books.forEach(bk=>{ %>
+          <li class="booklist__item">
+            <div class="searchBox__coverimg">
+              <a href="./bookProfile.html">
+                <img src="./../../img/Facebook-Cover-Photo-Size.png" alt=""
+              /></a>
+            </div>
+            <div class="searchBox__name">
+              <h2></h2>
+              <div class="searchBox__name--author">
+                <span>Author: <a href="/user/<%= userData._id %>"><%= userData.uname %></a></span>
+              </div>
+              <div class="searchBox__name--publisher">
+                <span>Publisher: <a href="#">Howa</a></span>
+              </div>
+              <div class="searchBox__name--publicationDate">
+                <span>Publication date: Oct 27, 2020</span>
+              </div>
+              <div class="searchBox__name--rating">
+                <i class="fa fa-star ratingChecked" aria-hidden="true"></i>
+                <i class="fa fa-star ratingChecked" aria-hidden="true"></i>
+                <i class="fa fa-star ratingChecked" aria-hidden="true"></i>
+                <i class="fa fa-star ratingChecked" aria-hidden="true"></i>
+                <i class="fa fa-star ratingChecked" aria-hidden="true"></i>
+                <span>(32)</span>
+              </div>
+            </div>
+          </li>
+          <% }) %>
+         
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>

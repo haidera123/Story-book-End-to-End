@@ -1,0 +1,112 @@
+<div class="homepage__section">
+  <div class="col__homepage--section width__small">
+    <div class="profile_card">
+      <img src="/img/users/<%= user.img %>" alt="Caroline Belfort" class="profile-pic" />
+      <h1><%= user.uname %></h1>
+      <p><%= user.role%></p>
+      <div class="stats">
+        <a href="#"
+          ><span><%= user.connections.length %></span><br />
+          Connections</a
+        >
+        <a href="#"
+          ><span>0</span><br />
+          Books</a
+        >
+      </div>
+      <div class="description__box">
+        <p>
+          <b>Description</b>
+          <br />
+          <%= user.about %>
+        </p>
+      </div>
+    </div>
+  </div>
+  <div class="col__homepage--section">
+    <section class="section__post">
+      <div class="section__post--new">
+        <div class="post">
+          <form id="form__post">
+            <div class="post__write">
+              <textarea
+                placeholder="Write a new post..."
+                id="content"
+                name="content"
+                class="input__post"
+              ></textarea>
+            </div>
+
+            <div class="post__cta">
+              <div class="file-input">
+                <input type="file" name="photo" id="photo" class="file-input__input" />
+                <label class="file-input__label" for="photo">
+                  <svg
+                    aria-hidden="true"
+                    focusable="false"
+                    data-prefix="fas"
+                    data-icon="upload"
+                    class="svg-inline--fa fa-upload fa-w-16"
+                    role="img"
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 512 512"
+                  >
+                    <path
+                      fill="currentColor"
+                      d="M296 384h-80c-13.3 0-24-10.7-24-24V192h-87.7c-17.8 0-26.7-21.5-14.1-34.1L242.3 5.7c7.5-7.5 19.8-7.5 27.3 0l152.2 152.2c12.6 12.6 3.7 34.1-14.1 34.1H320v168c0 13.3-10.7 24-24 24zm216-8v112c0 13.3-10.7 24-24 24H24c-13.3 0-24-10.7-24-24V376c0-13.3 10.7-24 24-24h136v8c0 30.9 25.1 56 56 56h80c30.9 0 56-25.1 56-56v-8h136c13.3 0 24 10.7 24 24zm-124 88c0-11-9-20-20-20s-20 9-20 20 9 20 20 20 20-9 20-20zm64 0c0-11-9-20-20-20s-20 9-20 20 9 20 20 20 20-9 20-20z"
+                    ></path>
+                  </svg>
+                  <span>Upload image</span></label
+                >
+              </div>
+              <input type="submit" value="Post" class="btn__post" />
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+    <section class="section__post">
+      <% if(posts.length!=0){ %> <% posts.forEach(pst=>{ %>
+      <div class="section__post--existed">
+        <div class="post__user">
+          <div class="post__user--img">
+            <img src="/img/users/<%= pst.user.img %>" alt="profilepic" class="profile__pic" />
+          </div>
+          <div class="post__user--info">
+            <span><a href="/user/<%= pst.user.id%>"><%= pst.user.uname %></a></span>
+            <span><%= pst.user.connections.length %> Connections</span>
+          </div>
+        </div>
+        <div class="post__text">
+          <p style="text-align: justify; line-break: anywhere"><%=pst.content %></p>
+        </div>
+        <div class="post__attachement">
+          <div class="post__attachement--img">
+            <img src="/img/posts/<%=pst.photo %>" alt="" />
+          </div>
+        </div>
+        <div class="post__interaction">
+          <ul class="post__interaction--list">
+            <li class="post__interaction--item">
+              <i
+                class="fa fa-thumbs-up icon-post <%= pst.likes.includes( user.id )?'likePost':'' %>"
+                aria-hidden="true"
+                id="postLike"
+                data-post-id="<%= pst._id %>"
+              ></i>
+              <span><%= pst.noOfLikes %></span>
+            </li>
+            <li class="post__interaction--item">
+              <i class="fa fa-comments icon-post" style="color: #057642" aria-hidden="true"></i>
+              <span>10</span>
+            </li>
+            <li class="post__interaction--item">
+              <i class="fa fa-share icon-post" style="color: #e7a33e" aria-hidden="true"></i>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <% }) %> <% } %>
+    </section>
+  </div>
+</div>

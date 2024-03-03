@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;0,900;1,300;1,700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+    />
+    <link rel="stylesheet" href="/css/style.css" />
+    <title><%= title %></title>
+  </head>
+
+  <body style="padding: 0px">
+    <div class="responsive__nav">
+      <i
+        class="fa fa-bars"
+        style="font-size: 15px"
+        aria-hidden="true"
+        onclick="openNavigation()"
+      ></i>
+    </div>
+    <div class="navigation__center">
+      <header class="headerhome">
+        <div class="headerhome__logo">
+          <h1 class="heading__primary">Storybook</h1>
+        </div>
+        <div class="headerhome__searchbar">
+          <form action="#" class="form__searchbar">
+            <div class="form__searchbar--row">
+              <input type="text" class="search__field" placeholder="Search for anything" />
+              <select class="search__category">
+                <option value="all">All</option>
+                <option value="books">Books</option>
+                <option value="authors">Authors</option>
+                <option value="publishers">Publishers</option>
+              </select>
+            </div>
+          </form>
+        </div>
+        <div class="headerhome__navigation">
+          <ul class="headerhome__navigation--list">
+            <li>
+              <a href="http://127.0.0.1:3000/" class="writter__view"> <b>Home</b> </a>
+            </li>
+            <li>
+              <a href="http://127.0.0.1:3000/books" class="writter__view">Books</a>
+            </li>
+            <% if (user) { %> <% if (user.role=="writer") { %>
+
+            <li>
+              <a href="/createbook" class="writter__view">Writter View</a>
+            </li>
+            <% } else { %>
+            <li>
+              <a href="/publiserdashboard" class="writter__view">Publisher view</a>
+            </li>
+            <% } %>
+
+            <li class="notification__list">
+              <a href="#" class="notification__icon"
+                ><i class="fa fa-bell icon" aria-hidden="true"></i>
+                <div class="notification__icon--number">5</div>
+              </a>
+              <ul class="headerhome__navigation--notification">
+                <li><a href="#">You have new message from qudrat.</a></li>
+                <li><a href="#">You have new message from Haider.</a></li>
+                <li><a href="#">You have new message from Zahid.</a></li>
+                <li><a href="#">You have new message from Iftikhar.</a></li>
+                <li><a href="#">You have new message from Qasim.</a></li>
+              </ul>
+            </li>
+ 
+            <li class="user__option--search">
+              <img src="/img/users/<%= user.img %>" alt="profilepic" class="profile__pic" />
+              <ul class="headerhome__navigation--user">
+                <% if (user.role=="writer") { %>
+                <li><a href="http://127.0.0.1:3000/user/<%= user._id %>"><%= user.fname %></a></li>
+                <% } else{ %>
+                <li>
+                  <a href="http://127.0.0.1:3000/publisher/<%= user._id %>"><%= user.fname %></a>
+                </li>
+                <% } %>
+                <li><a href="#">Notifications</a></li>
+                <li><a href="/settings/<%= user._id %>">Account Settings</a></li>
+                <li><span id="logOutBtn">Signout</span></li>
+              </ul>
+            </li>
+            <%} else { %>
+
+            <li>
+              <a href="/login" class="writter__view">Login</a>
+            </li>
+            <li>
+              <a href="/signup" class="writter__view">Signup</a>
+            </li>
+            <% } %>
+          </ul>
+        </div>
+      </header>
+    </div>
+    <%- body %>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="/js/socketio.js"></script>
+    <script>
+      function openNavigation() {
+        document.querySelector(".headerhome").classList.toggle("display__block");
+        document.querySelector("body").classList.toggle("background__layer");
+        console.log(document.getElementsByTagName("body"));
+      }
+      window.addEventListener(
+        "resize",
+        () => {
+          let w = window.innerWidth;
+          if (w > 1000) {
+            document.querySelector(".headerhome").classList.remove("display__block");
+            document.querySelector("body").classList.remove("background__layer");
+          }
+          console.log("resized");
+        },
+        false
+      );
+    </script>
+    <script>
+      function readURL(input) {
+        if (input.files && input.files[0]) {
+          var reader = new FileReader();
+          reader.onload = function (e) {
+            $("#imagePreview").css("background-image", "url(" + e.target.result + ")");
+            $("#imagePreview").hide();
+            $("#imagePreview").fadeIn(650);
+          };
+          reader.readAsDataURL(input.files[0]);
+        }
+      }
+      $("#scenePhoto").change(function () {
+        readURL(this);
+      });
+    </script>
+
+    <script src="/js/bundle.js"></script>
+  </body>
+</html>

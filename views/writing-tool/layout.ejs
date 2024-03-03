@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link rel="shortcut icon" href="/img/logotab.png" />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;0,900;1,300;1,700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css"
+    />
+
+    <link rel="stylesheet" href="/css/tool_style.css" />
+
+    <title><%= title %></title>
+  </head>
+  <body style="padding: 0px">
+    <div class="writing">
+      <!-- Responsive Navigation -->
+      <div class="box display__none"></div>
+
+      <div class="navigation__responsive">
+        <i class="fa fa-bars" aria-hidden="true" onclick="openNavigation()"></i>
+      </div>
+      <div class="writing__topmenuRes display__none">
+        <ul class="writing__topmenuRes--list">
+          <li>
+            <a href="/">
+              <img
+                style="display: block; width: 150px; height: 100px"
+                src="/img/logo.png"
+                alt="logo"
+              />
+            </a>
+          </li>
+          <!-- <li><h3 class="writing__topmenuRes--heading">StoryTeller</h3></li> -->
+        </ul>
+        <% if(user.books.length!=0 && bookId!=0){ %>
+
+        <ul class="writing__topmenuRes--list">
+          <li>
+            <a href="/readingroom/<%=bookId%>" class="<%=title=='Reading Room'?'active__link':''%>">
+              Reading Room</a
+            >
+          </li>
+          <li>
+            <a
+              href="/writingtool/<%=bookId%>"
+              class="<%=title=='Writing workspace'?'active__link':''%>"
+            >
+              Writing</a
+            >
+          </li>
+          <li>
+            <a href="/bookshelf/<%=bookId%>" class="<%=title=='Book Shelf'?'active__link':''%>">
+              My Books</a
+            >
+          </li>
+          <li>
+            <a href="/character/<%=bookId%>" class="<%=title=='Character'?'active__link':''%>"
+              >All Characters</a
+            >
+          </li>
+          <li>
+            <a href="/message/<%=bookId%>" class="<%=title=='Writing workspace'?'active__link':''%>"
+              >Message</a
+            >
+          </li>
+        </ul>
+        <ul class="writing__topmenuRes--list container-alignRes">
+          <li class="container-alignRes">
+            <span style="margin-right: 10px; font-weight: bold">Dark Mode</span>
+            <label class="switch">
+              <input
+                type="checkbox"
+                id="darkThemeChange"
+                onchange="darkModeEnableAndDisable(this)"
+                checked
+              />
+              <span class="slider round"></span>
+            </label>
+          </li>
+          <li><a href="#">Help</a></li>
+          <li>
+            <div class="profile__imgRes">
+              <i class="fa fa-user" aria-hidden="true"></i>
+              <span style="margin-right: 1rem"><%= user.name %></span>
+            </div>
+          </li>
+        </ul>
+        <ul class="user__menuRes--options">
+          <li>Public Profile</li>
+          <li>Reader view</li>
+
+          <li>Export as manuscript</li>
+          <li>Share manuscript</li>
+          <li>Logout</li>
+        </ul>
+        <% } %>
+      </div>
+      <!-- Non responsive navigation -->
+      <div class="writing__topmenu">
+        <ul class="writing__topmenu--list">
+          <!-- <li><h3 class="writing__topmenu--heading">StoryTeller</h3></li> -->
+          <li>
+            <img
+              style="display: block; width: 200px; height: 100px"
+              src="/img/logo.png"
+              alt="logo"
+            />
+          </li>
+        </ul>
+        <% if(user.books.length!=0&& bookId!=0){ %>
+
+        <ul class="writing__topmenu--list">
+          <li>
+            <a href="/readingroom/<%=bookId%>" class="<%=title=='Reading Room'?'active__link':''%>">
+              Reading Room</a
+            >
+          </li>
+          <li>
+            <a
+              href="/writingtool/<%=bookId%>"
+              class="<%=title=='Writing workspace'?'active__link':''%>"
+              >Writing</a
+            >
+          </li>
+          <li>
+            <a href="/bookshelf/<%=bookId%>" class="<%=title=='Book Shelf'?'active__link':''%>"
+              >My Books</a
+            >
+          </li>
+          <li>
+            <a href="/character/<%=bookId%>" class="<%=title=='Character'?'active__link':''%>"
+              >All Characters</a
+            >
+          </li>
+          <li>
+            <a href="/message/<%=bookId%>" class="<%=title=='Message'?'active__link':''%>"
+              >Message</a
+            >
+          </li>
+        </ul>
+        <ul class="writing__topmenu--list container-align">
+          <li class="container-align">
+            <span style="margin-right: 10px; font-weight: bold">Dark Mode</span>
+            <label class="switch">
+              <input type="checkbox" checked />
+              <span class="slider round"></span>
+            </label>
+          </li>
+          <li><a href="#">Help</a></li>
+          <li>
+            <div class="profile__img" onclick="displayUserMenu()">
+              <i class="fa fa-user" aria-hidden="true"></i>
+              <span style="margin-right: 1rem"><%= user.uname %></span>
+            </div>
+          </li>
+        </ul>
+        <ul class="user__menu--options">
+          <li>Public Profile</li>
+          <li>Reader view</li>
+
+          <li>Export as manuscript</li>
+          <li>Share manuscript</li>
+          <li>Logout</li>
+        </ul>
+        <% } %>
+      </div>
+      <%- body %>
+    </div>
+    <script src="https://cdn.ckeditor.com/ckeditor5/10.0.1/decoupled-document/ckeditor.js"></script>
+    <script
+      src="https://code.jquery.com/jquery-3.6.0.min.js"
+      integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+      crossorigin="anonymous"
+    ></script>
+    <script src="/js/writing_script.js"></script>
+    <script src="/js/writingUI_1.js"></script>
+    <script src="/js/bundle.js"></script>
+    <script src="/js/saveBookScript.js"></script>
+    <script>
+      function displayUserMenu() {
+        document.querySelector(".profile__img").classList.toggle("borderBottom");
+        document.querySelector(".user__menu--options").classList.toggle("display_block");
+      }
+    </script>
+    <script>
+      function readURL(input) {
+        if (input.files && input.files[0]) {
+          var reader = new FileReader();
+          reader.onload = function (e) {
+            $("#imagePreview").css("background-image", "url(" + e.target.result + ")");
+            $("#imagePreview").hide();
+            $("#imagePreview").fadeIn(650);
+          };
+          reader.readAsDataURL(input.files[0]);
+        }
+      }
+      $("#scenePhoto").change(function () {
+        readURL(this);
+      });
+      
+    </script>
+  </body>
+</html>

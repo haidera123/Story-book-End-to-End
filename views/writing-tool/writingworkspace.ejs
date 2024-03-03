@@ -1,0 +1,353 @@
+<div class="loading__screen" id="loadScreen"></div>
+<div class="wrapper" id="loadScreen">
+  <div id="loading"></div>
+</div>
+<div class="writing__tool">
+  <div class="writing__tool--chapter">
+    <div class="exapand__btnStory">
+      <div class="exapand__btnStory--icon" onclick="closeStoryStructure()">
+        <i class="fa fa-expand" aria-hidden="true"></i>
+      </div>
+    </div>
+    <% if(book){ %>
+    <span><%= book.name %></span>
+    <% } else { %>
+    <span>Stroy Structure</span>
+    <%}%>
+  </div>
+  <div class="writing__tool--storyStructure" id="a">
+    <div id="storyStructure__navigation" style="overflow-y: auto; height: 87vh; width: 100%">
+      <% writingContent.forEach((ch,chInd)=>{ %> <% if(ch == null) return %>
+      <ul class="chapter__navigation" id="draggable-list">
+        <li class="chapter__navigation--item" id="draggble-list-item">
+          <div class="chapter__navigation--element chapter">
+            <span class="chapter__number">
+              <span
+                class="chapter__number--text"
+                id="<%= chInd==0?'active__chapterno':'' %>"
+                data-chapter-no="<%= chInd+1 %>"
+                ><%= chInd+1 %></span
+              >
+            </span>
+            <div class="chapter__name">
+              <span class="chapter__name--text">Chapter</span>
+            </div>
+          </div>
+        </li>
+        <% ch[`chapter${chInd+1}`].forEach((sc,scInd)=>{ %> <% if(sc == null) return %>
+        <input
+          type="hidden"
+          class="textContentAssignId"
+          id="textContent-<%= chInd %>-<%= scInd %>"
+          value="<%= sc.content %>"
+        />
+        <input
+          type="hidden"
+          id="sceneNoteContent-<%= chInd %>-<%= scInd %>"
+          value="<%= sc.sceneNote %>"
+          class="sceneNoteAssignId"
+        />
+        <input
+          type="hidden"
+          id="scenePhoto-<%= chInd %>-<%= scInd %>"
+          value="url('<%= sc.scenePhoto %>')"
+          class="scenePhotoAssignId"
+        />
+
+        <li
+          data-start-index="<%=scInd%>"
+          class="chapter__navigation--item <%= scInd==0&&chInd==0?'scene__active':'' %>"
+        >
+          <div
+            draggable="true"
+            class="chapter__navigation--element scene"
+            onclick="updateData(this),saveSceneJs(false),selectScene(this),getContent()"
+          >
+            <span class="scene__checkbox <%= scInd==0&&chInd==0?'scene__checkbox--active':'' %>">
+              <span class="scene__checkbox--element"></span>
+            </span>
+            <div class="scene__name">
+              <span
+                class="scene__name--text"
+                id="<%= scInd==0?'active__sceneno':'' %>"
+                data-scene-no="<%= scInd+1 %>"
+                contenteditable="true"
+                ><%= sc.sceneName %>
+              </span>
+              <i
+                class="fa fa-plus"
+                style="font-size: 15px; margin-right: 12px"
+                aria-hidden="true"
+                onclick="scenePopUp()"
+              ></i>
+            </div>
+          </div>
+        </li>
+        <% }) %>
+      </ul>
+      <% }) %>
+    </div>
+    <button
+      onclick="addChapter()"
+      style="
+        width: fit-content;
+        margin: 10px auto;
+        border-radius: 50px;
+        cursor: pointer;
+        display: block;
+        border: 0px;
+        background-color: #aa85b6;
+        padding: 10px;
+        color: #000;
+      "
+    >
+      <i class="fa fa-plus" aria-hidden="true"></i>
+    </button>
+  </div>
+
+  <div class="writing__tool--textEditor">
+    <!-- The toolbar will be rendered in this container. -->
+    <div id="toolbar-container"></div>
+
+    <!-- This container will become the editable. -->
+    <div id="editor"></div>
+    <div class="scene__manipulation">
+      <button class="scene__manipulation--delete">
+        <i class="fa fa-trash" aria-hidden="true" id="deleteSceneBtn"></i>
+      </button>
+      <button class="scene__manipulation--add" onclick="scenePopUp()">
+        <i class="fa fa-plus" aria-hidden="true"></i>
+      </button>
+      <button
+        type="button"
+        id="saveSceneBtn"
+        class="scene__manipulation--add"
+        data-book-id="<%= book._id %>"
+        data-script-name="<%= book.script %>"
+      >
+        <i class="fas fa-cloud"></i>
+      </button>
+    </div>
+  </div>
+
+  <div class="writing__tool--character" id="c">
+    <div class="writing__tool--character--expand">
+      <div class="exapand__btn">
+        <div class="exapand__btn--icon" onclick="closeCharacterSide()">
+          <i class="fa fa-expand" aria-hidden="true"></i>
+        </div>
+      </div>
+      <span>Add Characters</span>
+    </div>
+    <div class="container__expand">
+      <div class="character__tool--menu">
+        <ul>
+          <li id="dynamic__heading">Book details</li>
+        </ul>
+
+        <div class="exapand__btn">
+          <div class="exapand__btn--icon" onclick="closeCharacterSide()">
+            <i class="fa fa-expand" aria-hidden="true"></i>
+          </div>
+        </div>
+      </div>
+      <div class="writing__tool--options">
+        <select class="characterOptions" id="characterOptions" onchange="displayCharacterOption()">
+          <option value="add">Add characters</option>
+          <option value="all">All characters</option>
+          <option value="search">Search characters</option>
+          <option value="scene">Scene details</option>
+        </select>
+        <div class="addCharacter__box" id="addCharacter__box">
+          <form class="character__form" id="addnewCharacterForm" autocomplete="off">
+            <div class="form__row">
+              <label class="form__label">Name:</label>
+              <input type="text" class="form__input" name="name" id="name" required />
+            </div>
+            <div class="form__row">
+              <label class="form__label">Category:</label>
+              <select name="" class="form__input" name="category" id="category" required>
+                <option value="protagonist">Protagonist</option>
+                <option value="anagonist">Anagonist</option>
+                <option value="deuteragonist">Deuteragonist</option>
+                <option value="tertiary">Tertiary</option>
+                <option value="confidante">Confidante</option>
+                <option value="loveInterest">Love Interest</option>
+                <option value="foil">Foil</option>
+                <option value="dynamic/changing">Dynamic/changing</option>
+                <option value="static/unchanging">Static/Unchanging</option>
+                <option value="stock">Stock</option>
+                <option value="symbolic">Symbolic</option>
+                <option value="round">Round</option>
+              </select>
+            </div>
+            <div class="form__row">
+              <label class="form__label">Description</label>
+              <textarea
+                class="form__textarea"
+                placeholder="Description..."
+                name="description"
+                id="description"
+                required
+              ></textarea>
+            </div>
+            <div class="form__row">
+              <label class="form__label">Role</label>
+              <select class="form__input" id="role" name="role" required>
+                <option value="primary">Primary</option>
+                <option value="secondary">Secondary</option>
+              </select>
+            </div>
+            <div class="form__row">
+              <label class="form__label">Upload Picture:</label>
+              <input type="file" id="photo" name="photo" class="form__input" accept="image/*" />
+            </div>
+            <input type="hidden" value="<%=bookId%>" id="bookId" name="bookId" />
+            <div class="form__row">
+              <input type="submit" class="btn btn__submit" value="Add Character" />
+            </div>
+          </form>
+        </div>
+        <div class="searchCharacter__box display__none" id="searchCharacter__box">
+          <form id="searchCharacter" autocomplete="off">
+            <div class="form__row">
+              <label class="form__label">Search Character:</label>
+              <div class="combined__calc" style="display: flex; align-items: center">
+                <input type="text" class="form__input" id="seachedCharacterName" required />
+                <button class="search__character--btn" type="submit">
+                  <i class="fas fa-search"></i>
+                </button>
+              </div>
+              <ul class="search__filter--ul"></ul>
+            </div>
+          </form>
+          <div class="form__row">
+            <div class="img__box">
+              <img src="/img/characters/pngwing.png" id="photoSearch" alt="" />
+            </div>
+          </div>
+          <div class="form__row">
+            <label class="form__label">Name:</label>
+            <input type="text" class="form__input" name="nameSearch" id="nameSearch" disabled />
+          </div>
+          <div class="form__row">
+            <label class="form__label">Category:</label>
+            <select name="" class="form__input" name="categorySearch" id="categorySearch" disabled>
+              <option value="protagonist">Protagonist</option>
+              <option value="anagonist">Anagonist</option>
+              <option value="deuteragonist">Deuteragonist</option>
+              <option value="tertiary">Tertiary</option>
+              <option value="confidante">Confidante</option>
+              <option value="loveInterest">Love Interest</option>
+              <option value="foil">Foil</option>
+              <option value="dynamic/changing">Dynamic/changing</option>
+              <option value="static/unchanging">Static/Unchanging</option>
+              <option value="stock">Stock</option>
+              <option value="symbolic">Symbolic</option>
+              <option value="round">Round</option>
+            </select>
+          </div>
+          <div class="form__row">
+            <label class="form__label">Description</label>
+            <textarea
+              class="form__textarea"
+              placeholder="Description..."
+              name="descriptionSearch"
+              id="descriptionSearch"
+              disabled
+            ></textarea>
+          </div>
+          <div class="form__row">
+            <label class="form__label">Role</label>
+            <select class="form__input" id="roleSearch" name="roleSearch" disabled>
+              <option value="primary">Primary</option>
+              <option value="secondary">Secondary</option>
+            </select>
+          </div>
+        </div>
+        <div class="scene__details display__none" id="sceneDetails">
+          <h2 class="scene__heading">Scene 1</h2>
+          <div class="form__row">
+            <form id="updateSceneImage">
+              <input type="hidden" name="sceneDetailsSceneno" id="sceneDetailsSceneno" />
+              <input type="hidden" name="sceneDetailsChapterno" id="sceneDetailsChapterno" />
+              <input type="hidden" name="sceneDetailsScriptname" id="sceneDetailsScriptname" />
+              <div class="avatar-upload">
+                <div class="avatar-edit">
+                  <input type="file" id="scenePhoto" name="scenePhoto" accept="image/*" />
+                  <label for="scenePhoto"></label>
+                </div>
+
+                <div class="avatar-preview">
+                  <div
+                    id="imagePreview"
+                    style="background-image: url(/img/scenes/default.png)"
+                  ></div>
+                </div>
+              </div>
+              <%= console.log(book.script) %>
+              <input
+                type="submit"
+                value="update photo"
+                class="btnSubmitScenePhoto"
+                id="<%= book._id %>"
+                style="
+                  background-color: #aa85b6;
+                  color: #fff;
+                  text-transform: uppercase;
+                  width: 100%;
+                  border: 0px;
+                  padding: 10px;
+                  cursor: pointer;
+                  font-size: 17px;
+                "
+              />
+            </form>
+          </div>
+          <div class="form__row">
+            <label class="form__label">Notes</label>
+            <textarea
+              class="form__textarea"
+              placeholder="Description..."
+              name="sceneNote"
+              id="sceneNote"
+              style="height: 25vh"
+            ></textarea>
+          </div>
+        </div>
+        <div class="allCharacters display__none" id="allCharacters">
+          <ul>
+            <% book.characters.forEach(ch=>{ %>
+            <li>
+              <img src="/img/characters/<%= ch.photo %>" alt="" />
+              <span><%= ch.name %></span>
+            </li>
+            <% }) %>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="popup__background">
+  <div class="add__scene popup">
+    <h1 class="heading__primary">Create a new scene</h1>
+    <form action="#" onsubmit="addSceneAfter(event)">
+      <div class="form__row">
+        <label class="form__label">Scene Name</label>
+        <input
+          class="form__input"
+          id="sceneName"
+          type="text"
+          required
+          placeholder="Please enter scene name..."
+        />
+      </div>
+
+      <div class="form__row">
+        <input type="submit" class="btn btn__submit pop_btn" value="Add Scene" />
+      </div>
+    </form>
+    <div class="cross__btn" onclick="closeTab()">X</div>
+  </div>
+</div>

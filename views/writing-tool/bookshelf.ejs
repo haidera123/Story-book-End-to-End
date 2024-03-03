@@ -1,0 +1,98 @@
+<div class="book__shelf">
+  <div class="book__shelf--create">
+    <h1 class="heading__primary--book">Create a new project</h1>
+    <div class="btn__container">
+      <a class="btn__create" style="text-decoration: none" href="/createnewbook"
+        >Write a New Novel</a
+      >
+    </div>
+  </div>
+  <div class="book__shelf--list">
+    <h1 class="heading__primary--book">All Books</h1>
+    <!-- Books in Progress -->
+    <h1 class="heading__primary--book">Books in Progress</h1>
+    <% if(user.books.length!=0){ %>
+    <ul class="book__progress">
+      <!-- <p> <%= user.books %> </p> -->
+      <% user.books.forEach(e=>{ %> <% if(e.publishStatus == "writing"){ %>
+
+      <li class="<%= bookId==e._id?'selected__book':'' %>">
+        <div class="book__manipulation">
+          <a class="book__manipulation--delete" id="<%= e._id %>">
+            <i class="fa fa-trash" style="color: #000" aria-hidden="true"></i>
+          </a>
+          <a href="/selectbook/<%= e._id %>" class="book__manipulation--add">
+            <i class="fa fa-pencil" style="color: #000" aria-hidden="true"></i>
+          </a>
+          <a href="#" id="sendBookBtn" data-book-id="<%=e._id%>" class="book__manipulation--add">
+            <i
+              class="fa fa-paper-plane"
+              data-book-id="<%=e._id%>"
+              style="color: #000"
+              aria-hidden="true"
+            ></i>
+          </a>
+        </div>
+        <div>
+          <div class="book__title"><%= e.name %></div>
+          <div class="book__description">Last Edited mo, Dec 20 2020</div>
+        </div>
+      </li>
+      <% } %> <% }) %>
+    </ul>
+    <!-- Books in Pending -->
+    <h1 class="heading__primary--book">Books Pending</h1>
+    <ul class="book__progress">
+      <!-- <p> <%= user.books %> </p> -->
+      <% user.books.forEach(e=>{ %> <% if(e.publishStatus == "pending"){ %>
+
+      <li class="<%= bookId==e._id?'selected__book':'' %>">
+        <div class="book__manipulation">
+          <a href="#" id="sendBookBtn" data-book-id="<%=e._id%>" class="book__manipulation--add">
+            <i
+              class="fa fa-paper-plane"
+              data-book-id="<%=e._id%>"
+              style="color: #000"
+              aria-hidden="true"
+            ></i>
+          </a>
+        </div>
+        <div>
+          <div class="book__title"><%= e.name %></div>
+          <div class="book__description">Last Edited mo, Dec 20 2020</div>
+        </div>
+      </li>
+      <% } %> <% }) %>
+    </ul>
+    <% } %>
+    <h1 class="heading__primary--book">Books Published</h1>
+    <% user.books.forEach(e=>{ %> <% if(e.publishStatus == "published"){ %>
+
+    <ul class="book__published">
+      <li>
+        <div class="book__manipulation"></div>
+        <div>
+          <div class="book__title"><%= e.name %></div>
+          <div class="book__description">Last Edited mo, Dec 20 2020</div>
+        </div>
+      </li>
+      <% } %> <% }) %>
+    </ul>
+  </div>
+  <!-- Publisher profile -->
+  <div class="publisher__popup" id="publisherContainer" style="display: none">
+    <header class="publisher__popup--header">
+      <h1>All Publishers</h1>
+      <button class="cross__btn--publisherpopup" onclick="crossPopupPublisher(this)">X</button>
+    </header>
+    <div class="publisher__list--profile" id="parent">
+      <!-- Publiser Profile -->
+    </div>
+  </div>
+</div>
+<script>
+  function crossPopupPublisher(ele) {
+    const publisherContainer = document.getElementById("publisherContainer");
+    publisherContainer.style.display = "none";
+  }
+</script>

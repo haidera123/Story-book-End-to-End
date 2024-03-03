@@ -1,0 +1,73 @@
+<div class="writing__tool">
+  <div class="writing__tool--chapter">
+    <div class="exapand__btnStory">
+      <div class="exapand__btnStory--icon" onclick="closeStoryStructure()">
+        <i class="fa fa-expand" aria-hidden="true"></i>
+      </div>
+    </div>
+    <% if(book){ %>
+    <span><%= book.name %></span>
+    <% } else { %>
+    <span>Stroy Structure</span>
+    <%}%>
+  </div>
+  <div class="writing__tool--storyStructure reading__room--color" id="a">
+    <div style="width: 100%">
+      <% writingContent.forEach((ch,chInd)=>{ %> <% if(ch == null) return %>
+      <ul class="chapter__navigation" id="draggable-list">
+        <li class="chapter__navigation--item" id="draggble-list-item">
+          <div class="chapter__navigation--element chapter">
+            <span class="chapter__number">
+              <span
+                class="chapter__number--text"
+                id="<%= chInd==0?'active__chapterno':'' %>"
+                data-chapter-no="<%= chInd+1 %>"
+                ><%= chInd+1 %></span
+              >
+            </span>
+            <div class="chapter__name">
+              <span class="chapter__name--text">Chapter</span>
+            </div>
+          </div>
+        </li>
+        <% ch[`chapter${chInd+1}`].forEach((sc,scInd)=>{ %> <% if(sc == null) return %>
+        <input type="hidden" id="textContent-<%= chInd %>-<%= scInd %>" value="<%= sc.content %>" />
+
+        <li
+          data-start-index="<%=scInd%>"
+          class="chapter__navigation--item <%= scInd==0&&chInd==0?'scene__active--reading':'' %>"
+        >
+          <div
+            draggable="true"
+            class="chapter__navigation--element scene"
+            onclick="updateData(this),selectScene(this,true),getContent()"
+          >
+            <span class="scene__checkbox <%= scInd==0&&chInd==0?'scene__checkbox--active':'' %>">
+              <span class="scene__checkbox--element"></span>
+            </span>
+            <div class="scene__name">
+              <span
+                class="scene__name--text"
+                id="<%= scInd==0?'active__sceneno':'' %>"
+                data-scene-no="<%= scInd+1 %>"
+                ><%= sc.sceneName %>
+              </span>
+              <i class="fas fa-grip-lines" style="font-size: 16px" aria-hidden="true"></i>
+            </div>
+          </div>
+        </li>
+        <% }) %>
+      </ul>
+      <% }) %>
+    </div>
+  </div>
+  <div class="writing__tool--textEditor" id="b">
+    <!-- The toolbar will be rendered in this container. -->
+    <!-- <div id="toolbar-container"></div> -->
+
+    <!-- This container will become the editable. -->
+    <div id="editor" class="editor__reading--disabled">
+      <p>Scene 1</p>
+    </div>
+  </div>
+</div>

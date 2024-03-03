@@ -1,0 +1,43 @@
+<div class="characterPage">
+  <div class="characterPage__detailBox">
+    <h1 class="heading__primary--character">Description of Selected Character</h1>
+    <form action="#">
+      <div class="form__row">
+        <textarea class="form__textarea" id="characterDescriptionTextarea" disabled></textarea>
+      </div>
+    </form>
+  </div>
+  <div class="characterPage__tableBox">
+    <h1 class="heading__primary--character">All Characters</h1>
+    <table class="characterPage__table">
+      <tr class="characterPage__table--row">
+        <th class="characterPage__table--heading">No.</th>
+        <th class="characterPage__table--heading">Character Image</th>
+        <th class="characterPage__table--heading">Name</th>
+        <th class="characterPage__table--heading">Category</th>
+        <th class="characterPage__table--heading">Role</th>
+      </tr>
+      <% book.characters.forEach((character,index)=>{ %>
+      <tr class="characterPage__table--row" onclick="updateDescription('<%= index+1 %>')">
+        <input
+          type="hidden"
+          id="characterDescription-<%= index+1 %>"
+          value="<%= character.description %>"
+        />
+        <td class="characterPage__table--data"><%= index+1 %></td>
+        <td class="characterPage__table--data">
+          <img
+            src="/img/characters/<%= character.photo %>"
+            class="character__img--placeholder"
+            style="border-radius: 50px"
+            alt="Character img"
+          />
+        </td>
+        <td class="characterPage__table--data"><%= character.name %></td>
+        <td class="characterPage__table--data"><%= character.category %></td>
+        <td class="characterPage__table--data"><%= character.role %></td>
+      </tr>
+      <% }) %>
+    </table>
+  </div>
+</div>

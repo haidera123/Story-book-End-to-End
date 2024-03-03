@@ -1,0 +1,111 @@
+<div class="container__message">
+  <div class="conversation__list">
+    <div class="conversation__list--header">
+      <h1 class="heading__primary">All contacts</h1>
+    </div>
+    <ul class="conversation__list--ul">
+      <% contact.forEach(con=>{ %>
+      <li class="conversation__list--li">
+        <div class="conversation__list--box">
+          <div class="conversation__list--profile">
+            <img src=" /img/users/<%=con.img %>" alt="profile Pic" />
+          </div>
+          <div class="conversation__list--detail">
+            <span class="conversation__list--uname"><%=con.uname %></span>
+            <span class="conversation__list--lmsg"> Last Message... </span>
+          </div>
+        </div>
+      </li>
+      <% }) %>
+      <!-- Second Li -->
+    </ul>
+  </div>
+  <div class="message__list">
+    <div class="message__list--header">
+      <h1 class="heading__primary">UserName</h1>
+    </div>
+    <ul class="message__list--ul">
+      <li class="message__list--li">
+        <div class="message__list--box">
+          <div class="message__list--profile">
+            <img src="./../../img/profile pic placeholder.png" alt="profile Pic" />
+          </div>
+          <div class="message__list--details">
+            <div class="message__list--timeuname">
+              <span class="message__list--uname"> UserName </span>
+              <span class="message__list--time"> Feb 07, 1:13 PM </span>
+            </div>
+            <div class="message__list--msg">
+              <p>Hi there! I am Ali.</p>
+            </div>
+          </div>
+        </div>
+      </li>
+    </ul>
+    <% if(contact.length!=0){ %>
+
+    <div class="msg__textbox" style="position: absolute; bottom: 0; left: 0; right: 0">
+      <form id="messageForm">
+        <input type="hidden" id="receiverId" value="<%=contact[0].id %>" />
+
+        <div class="form__row" style="display: flex">
+          <input
+            type="text"
+            class="form__input"
+            style="margin-bottom: 0px"
+            name="text"
+            id="text"
+            placeholder="Type message here..."
+          />
+          <button
+            type="submit"
+            style="
+              background-color: #27ae60;
+              color: #fff;
+              padding: 0px 20px;
+              border: 0;
+              width: fit-content;
+              text-transform: uppercase;
+              cursor: pointer;
+            "
+          >
+            send
+          </button>
+        </div>
+        <div class="form__row btn__send">
+          <div class="selectors__eav">
+            <i
+              class="fa fa-smile-o"
+              style="
+                color: #27ae60;
+                font-size: 22px;
+                display: inline-block;
+                margin-right: 6px;
+                cursor: pointer;
+              "
+              aria-hidden="true"
+            ></i>
+            <i
+              class="fa fa-paperclip"
+              style="
+                color: #000;
+                font-size: 22px;
+                display: inline-block;
+                margin-right: 6px;
+                cursor: pointer;
+              "
+              aria-hidden="true"
+              aria-hidden="true"
+            ></i>
+
+            <div class="videocall__btn">
+              <i class="fa fa-video-camera" aria-hidden="true"></i>
+              <span>Video Call</span>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+    <% }%>
+  </div>
+</div>
